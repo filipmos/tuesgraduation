@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228202123) do
+ActiveRecord::Schema.define(version: 20131228205245) do
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -24,7 +24,8 @@ ActiveRecord::Schema.define(version: 20131228202123) do
     t.string   "second_name"
     t.string   "last_name"
     t.integer  "number"
-    t.string   "paralelka"
+    t.string   "grade"
+    t.string   "user_type",       default: "student"
   end
 
 end

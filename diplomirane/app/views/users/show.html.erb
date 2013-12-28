@@ -19,7 +19,17 @@
 
 <p>
   <strong>Paraleka:</strong>
-  <%= @user.paralelka %>
+  <%= @user.grade %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @user.user_type %>
+</p>
+
+<p>
+  <strong>Access:</strong>
+  <%= @user.access %>
 </p>
 
 <p>
@@ -32,10 +42,6 @@
   <%= @user.salt %>
 </p>
 
-<p>
-  <strong>Access:</strong>
-  <%= @user.access %>
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

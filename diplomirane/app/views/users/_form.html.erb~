@@ -42,8 +42,8 @@
   </div>
 
 	<div>
-    <%= f.label :paralelka %>:
-    <%= f.text_field :paralelka, :size => 40 %>
+    <%= f.label :grade %>:
+    <%= f.text_field :grade, :size => 40 %>
   </div>
 
   <div>
@@ -57,9 +57,14 @@
   </div>
 
 	<div>
-    <%= f.label :access %>:
-    <%= f.text_field :access, :size => 40 %>
+    <%= f.label :user_type %>:
+    <%= f.select(:user_type, ["student", "teacher", "graduation supervisor"] ) %>
   </div>
+
+	<div>
+		<%= f.label :access %>:
+		<%= f.select(:access, ["user","admin"] )  %>
+	</div>
 
   <div>
     <%= f.submit %>
