@@ -1,0 +1,8 @@
+<h1>Welcome </h1>
+
+<% if session[:user_id] %>
+	<h2><%= User.find_by_id(session[:user_id]).name %></h2>
+	<h3>ID: <%= User.find_by_id(session[:user_id]).id %></h3>
+<% end %>
+
+It's <%= Time.now %>
