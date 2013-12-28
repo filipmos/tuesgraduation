@@ -3,6 +3,10 @@
 <% if session[:user_id] %>
 	<h2><%= User.find_by_id(session[:user_id]).name %></h2>
 	<h3>ID: <%= User.find_by_id(session[:user_id]).id %></h3>
+	<% if User.find_by_id(session[:user_id]).access == "admin" %>
+		<br />
+		<%= link_to 'Users', users_path %>
+	<% end %>
 <% end %>
 
-It's <%= Time.now %>
+

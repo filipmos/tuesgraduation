@@ -1,0 +1,4 @@
+class DeleteClassFromUsers < ActiveRecord::Migration
+  def change
+  end
+end

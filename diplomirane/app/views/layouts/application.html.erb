@@ -9,11 +9,7 @@
 <body>
 
 <%= yield %>
-		<% if session[:user_id] %>
-				<% if session[:user_id]==2 %>
-        	<br />
-        	<%= link_to 'Users', users_path %>
-				<% end %>
+		<% if session[:user_id] %>		
         <br />
         <%= button_to 'Logout', logout_path, :method => :delete   %>
 		<% end %>   

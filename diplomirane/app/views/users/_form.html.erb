@@ -17,8 +17,33 @@
   <legend>Enter User Details</legend>
 
   <div>
-    <%= f.label :name %>:
+    <%= f.label :name, "Username" %>:
     <%= f.text_field :name, :size => 40 %>
+  </div>
+
+	<div>
+    <%= f.label :first_name %>:
+    <%= f.text_field :first_name, :size => 40 %>
+  </div>
+	
+	<div>
+    <%= f.label :second_name %>:
+    <%= f.text_field :second_name, :size => 40 %>
+  </div>
+
+	<div>
+    <%= f.label :last_name %>:
+    <%= f.text_field :last_name, :size => 40 %>
+  </div>
+
+	<div>
+    <%= f.label :number %>:
+    <%= f.text_field :number, :size => 40 %>
+  </div>
+
+	<div>
+    <%= f.label :paralelka %>:
+    <%= f.text_field :paralelka, :size => 40 %>
   </div>
 
   <div>
@@ -29,6 +54,11 @@
   <div>
     <%= f.label :password_confirmation, 'Confirm' %>:
     <%= f.password_field :password_confirmation, :size => 40 %>
+  </div>
+
+	<div>
+    <%= f.label :access %>:
+    <%= f.text_field :access, :size => 40 %>
   </div>
 
   <div>
