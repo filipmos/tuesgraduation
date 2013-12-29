@@ -1,3 +1,19 @@
+<script type="text/javascript"> 
+function render() {
+    if (document.getElementById('user_user_type').value == "graduation supervisor" ||
+				document.getElementById('user_user_type').value == "teacher") {
+        document.getElementById('gs').style.display = 'block';
+				document.getElementById('stud').style.display = 'none';
+				document.getElementById('stud').style.display = 'none';
+    } else {
+        document.getElementById('gs').style.display = 'none';
+				document.getElementById('stud').style.display = 'block';
+				document.getElementById('stud').style.display = 'block';
+    }
+}
+</script>
+<%= javascript_tag "render()" %>
+
 <div class="diplomirane_form">
 
 <%= form_for @user do |f| %>
@@ -37,12 +53,21 @@
   </div>
 
 	<div>
-    <%= f.label :number %>:
-    <%= f.text_field :number, :size => 40 %>
+    <%= f.label :user_type %>:
+    <%= f.select(:user_type, {:"student" => 'student', :"graduation supervisor" => 'graduation supervisor',  
+				:"teacher" => 'teacher'},{}, {:onclick=>"render()"} ) %>
   </div>
-
-	<div>
-    <%= f.label :grade %>:
+	
+	
+	<div id="gs" style="display: none">
+		<%= f.label :business, "Business:" %>:
+		<%= f.text_field :business, :size => 40 %>
+	</div>
+	<div id="stud">
+    <%= f.label :number, "Number:" %>:
+    <%= f.text_field :number, :size => 40 %>
+  
+    <%= f.label :grad, "Grade:" %>:
     <%= f.select(:grade, ["","12a","12b","12v","12g"] )  %>
   </div>
 
@@ -54,11 +79,6 @@
   <div>
     <%= f.label :password_confirmation, 'Confirm' %>:
     <%= f.password_field :password_confirmation, :size => 40 %>
-  </div>
-
-	<div>
-    <%= f.label :user_type %>:
-    <%= f.select(:user_type, ["student", "teacher", "graduation supervisor"] ) %>
   </div>
 
 	<div>

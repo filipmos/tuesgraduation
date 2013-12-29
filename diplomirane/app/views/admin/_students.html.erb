@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<% @users=User.all %>
+<h2> Students </h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+	<tbody>
+    <% @users.each do |user| %>
+			<% if user.user_type == "student" %>
+				<% @user_name=user.first_name + " " + user.second_name + " " + user.last_name %>
+		    <tr>
+		      <td><%= link_to @user_name , user %></td>
+		      <td><%= user.number %></td>
+		      <td><%= user.grade %></td>
+			<% end %>
+    <% end %>
+  </tbody>
+</table>
+

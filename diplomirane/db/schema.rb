@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228225236) do
+ActiveRecord::Schema.define(version: 20131229123256) do
 
   create_table "diploma_works", force: true do |t|
     t.string   "title"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131228225236) do
     t.integer  "number"
     t.string   "grade"
     t.string   "user_type",       default: "student"
+    t.string   "business"
   end
 
 end

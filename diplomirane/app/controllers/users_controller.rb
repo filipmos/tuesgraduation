@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	#skip_before_filter :authorize, :only => [:new, :create]
-	before_filter :acsess
+	before_filter :acsess, :except => :show
 
   # GET /users
   # GET /users.xml
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
 protected
 
     def acsess
-      unless User.find_by_id(session[:user_id]).access == "admin" or User.find_by_id(session[:user_id]).user_type == "graduation supervisor"
+      unless User.find_by_id(session[:user_id]).access == "admin"
         redirect_to admin_url
       end
     end

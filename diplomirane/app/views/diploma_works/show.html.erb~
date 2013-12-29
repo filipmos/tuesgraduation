@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @diploma_work.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @diploma_work.description %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @diploma_work.student %>
+</p>
+
+<p>
+  <strong>Graduation supervisor:</strong>
+  <%= @diploma_work.graduation_supervisor %>
+</p>
+
+<p>
+  <strong>Agreed:</strong>
+  <%= @diploma_work.agreed %>
+</p>
+<p>
+  <strong>Approved:</strong>
+  <%= @diploma_work.approved %>
+</p>
+
+<% if user_access == "admin" %>
+	<%= link_to 'Edit', edit_diploma_work_path(@diploma_work) %>
+<% end %>
+<%= link_to 'Back', diploma_works_path %>

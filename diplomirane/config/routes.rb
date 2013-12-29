@@ -1,7 +1,7 @@
 Diplomirane::Application.routes.draw do
-  resources :diploma_works
-
+	
   get 'admin' => 'admin#index'
+	get 'users' => 'users#index'
 
   controller :sessions do
     get  'login' => :new
@@ -12,13 +12,19 @@ Diplomirane::Application.routes.draw do
   get "sessions/new"
   get "sessions/create"
   get "sessions/destroy"
+
   resources :users
+	resources :diploma_works
+	
+	get "admin/index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'admin#index'
+  # just remember to delete public/index.html.
+  # root :to => "welcome#index"
+  root :to => 'admin#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

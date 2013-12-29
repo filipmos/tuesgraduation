@@ -1,3 +1,7 @@
+<% user_access= User.find_by_id(session[:user_id]).access %>
+<% user_name=User.find_by_id(session[:user_id]).name %>
+
+
 <%= form_for(@diploma_work) do |f| %>
   <% if @diploma_work.errors.any? %>
     <div id="error_explanation">
@@ -23,10 +27,17 @@
     <%= f.label :student %><br>
     <%= f.text_field :student %>
   </div>
-  <div class="field">
-    <%= f.label :graduation_supervisor %><br>
-    <%= f.text_field :graduation_supervisor %>
-  </div>
+	<% if user_access == "admin" %>
+		<div class="field">
+		  <%= f.label :graduation_supervisor %><br>
+		  <%= f.text_field :graduation_supervisor %>
+		</div>
+	<% else %>
+		<div class="field">
+		  <%= f.label :graduation_supervisor %><br>
+		  <%= f.text_field :graduation_supervisor, :readonly => true ,:value => user_name %>
+		</div>
+	<% end %>
   <div class="field">
     <%= f.label :agreed %><br>
     <%= f.check_box :agreed %>

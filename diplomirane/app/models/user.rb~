@@ -1,15 +1,18 @@
 require 'digest/sha2'
 
 class User < ActiveRecord::Base
-	validates :first_name, :second_name, :last_name, :number, :presence => true
-
+	validates :first_name, :second_name, :last_name, :presence => true
   validates :name, :presence => true, :uniqueness => true
+
+	
+	validates_presence_of :business, :unless => lambda { self.user_type == "student" }
+	validates_presence_of :number, :unless => lambda { self.user_type == "graduation supervisor" or self.user_type == "teacher" }
 
   validates :password, :confirmation => true
   attr_accessor :password_confirmation
   attr_reader   :password
 
-	validates_inclusion_of :grade, :in => ["12a","12b","12v","12g"]
+	validates_inclusion_of :grade, :in => ["","12a","12b","12v","12g"], :unless => lambda { self.user_type == "graduation supervisor" or self.user_type == "teacher" }
 	validates_inclusion_of :access, :in => %w(user admin)
 	validates_inclusion_of :user_type, :in => ["student", "teacher", "graduation supervisor"]
 

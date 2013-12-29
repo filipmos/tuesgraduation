@@ -1,10 +1,11 @@
-<h1>Welcome </h1>
+<%= render 'students' %>
+<%= render 'diploma_works' %>
+<%= render 'graduation_supervisors' %>
 
 <% if session[:user_id] %>
-	<h2><%= User.find_by_id(session[:user_id]).name %></h2>
-	<h3>ID: <%= User.find_by_id(session[:user_id]).id %></h3>
+	<h2>Welcome <%= User.find_by_id(session[:user_id]).name %></h2>
 	<% if User.find_by_id(session[:user_id]).access == "admin" %>
-		<br />
+
 		<%= link_to 'Users', users_path %>
 	<% end %>
 	<%= link_to 'Diploma Works', diploma_works_path %>
