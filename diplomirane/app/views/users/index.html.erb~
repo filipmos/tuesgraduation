@@ -14,7 +14,6 @@
   </tr>
 
 <% @users.each do |user| %>
-	<td><%= link_to user.name, user %></td>
   <tr>
     <td><%= link_to user.name, user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
@@ -27,5 +26,6 @@
 <br />
 
 <%= link_to 'New User', new_user_path %>
+<%= link_to 'Add Class', new_class_users_path %>
 <%= link_to 'Back', admin_path %>
 

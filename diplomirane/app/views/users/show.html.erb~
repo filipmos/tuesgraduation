@@ -1,6 +1,6 @@
 <% user_access= User.find_by_id(session[:user_id]).access %>
-<
-p id="notice"><%= notice %></p>
+
+<p id="notice"><%= notice %></p>
 <p>
   <strong>Username:</strong>
   <%= @user.name %>
@@ -18,10 +18,11 @@ p id="notice"><%= notice %></p>
 </p>
 
 <p>
-  <strong>Paraleka:</strong>
+  <strong>Grade:</strong>
   <%= @user.grade %>
 </p>
 
+<% if user_access == "admin" %>
 <p>
   <strong>Type:</strong>
   <%= @user.user_type %>
@@ -41,8 +42,8 @@ p id="notice"><%= notice %></p>
   <strong>Salt:</strong>
   <%= @user.salt %>
 </p>
-
-<% if user_access == "admin" %>
-	<%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>
-<%= link_to 'Back', users_path %>
+	<% if @user.id == session[:user_id] or user_access == "admin" %>
+<%= link_to 'Edit', edit_user_path(@user) %>
+<% end %>
+<%= link_to 'Back', :back %>

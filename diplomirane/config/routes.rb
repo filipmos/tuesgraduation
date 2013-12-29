@@ -3,6 +3,7 @@ Diplomirane::Application.routes.draw do
   get 'admin' => 'admin#index'
 	get 'users' => 'users#index'
 
+
   controller :sessions do
     get  'login' => :new
     post 'login' => :create

@@ -3,13 +3,7 @@
 
 <%if user_access == "admin" or @diploma_work.graduation_supervisor == user_name %>
 	<h1>Editing diploma_work</h1>
-	<%= render 'form' %>
-	<% if user_access == "admin" %>
-		<div class="field">
-    <%= form_for(@diploma_work).label :approved %><br>
-    <%= form_for(@diploma_work).check_box :approved %>
-  </div>
-	<% end %>	
+	<%= render 'form' %>	
 <% else %>
 	<p>Can't edit!</p>
 	<script type="text/javascript">

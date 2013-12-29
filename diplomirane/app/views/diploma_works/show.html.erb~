@@ -1,5 +1,7 @@
-<p id="notice"><%= notice %></p>
+<% user_access= User.find_by_id(session[:user_id]).access %>
+<% user_name= User.find_by_id(session[:user_id]).name %>
 
+<p id="notice"><%= notice %></p>
 <p>
   <strong>Title:</strong>
   <%= @diploma_work.title %>
@@ -29,7 +31,7 @@
   <%= @diploma_work.approved %>
 </p>
 
-<% if user_access == "admin" %>
+<% if user_access == "admin" or user_name == diploma_work.graduation_supervisor %>
 	<%= link_to 'Edit', edit_diploma_work_path(@diploma_work) %>
 <% end %>
-<%= link_to 'Back', diploma_works_path %>
+<%= link_to 'Back', :back %>

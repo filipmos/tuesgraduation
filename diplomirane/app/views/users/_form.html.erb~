@@ -60,14 +60,14 @@ function render() {
 	
 	
 	<div id="gs" style="display: none">
-		<%= f.label :business, "Business:" %>:
+		<%= f.label :business, "Business" %>:
 		<%= f.text_field :business, :size => 40 %>
 	</div>
 	<div id="stud">
-    <%= f.label :number, "Number:" %>:
+    <%= f.label :number, "Number" %>:
     <%= f.text_field :number, :size => 40 %>
   
-    <%= f.label :grad, "Grade:" %>:
+    <%= f.label :grade, "Grade" %>:
     <%= f.select(:grade, ["","12a","12b","12v","12g"] )  %>
   </div>
 
@@ -91,6 +91,7 @@ function render() {
   </div>
 
   </fieldset>
+	<%= javascript_tag "render()" %>
 <% end %>
 
 </div>

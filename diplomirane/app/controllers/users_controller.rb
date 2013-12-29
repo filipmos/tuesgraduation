@@ -36,6 +36,11 @@ class UsersController < ApplicationController
     end
   end
 
+	def new_class
+
+
+	end
+
   # GET /users/1/edit
   def edit
 		params.permit!
@@ -97,7 +102,10 @@ class UsersController < ApplicationController
 protected
 
     def acsess
-      unless User.find_by_id(session[:user_id]).access == "admin"
+			if params[:id]
+				@user_id = User.find(params[:id]).id
+			end
+      unless User.find_by_id(session[:user_id]).access == "admin" or @user_id == session[:user_id]
         redirect_to admin_url
       end
     end
