@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  student: MyString
+  graduation_supervisor: MyString
+  agreed: false
+  approved: false
+
+two:
+  title: MyString
+  description: MyText
+  student: MyString
+  graduation_supervisor: MyString
+  agreed: false
+  approved: false

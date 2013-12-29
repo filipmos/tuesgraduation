@@ -1,4 +1,6 @@
 Diplomirane::Application.routes.draw do
+  resources :diploma_works
+
   get 'admin' => 'admin#index'
 
   controller :sessions do

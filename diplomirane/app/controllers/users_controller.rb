@@ -97,7 +97,7 @@ class UsersController < ApplicationController
 protected
 
     def acsess
-      unless User.find_by_id(session[:user_id]).access == "admin"
+      unless User.find_by_id(session[:user_id]).access == "admin" or User.find_by_id(session[:user_id]).user_type == "graduation supervisor"
         redirect_to admin_url
       end
     end

@@ -43,7 +43,7 @@
 
 	<div>
     <%= f.label :grade %>:
-    <%= f.text_field :grade, :size => 40 %>
+    <%= f.select(:grade, ["","12a","12b","12v","12g"] )  %>
   </div>
 
   <div>

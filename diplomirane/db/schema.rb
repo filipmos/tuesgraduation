@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228205245) do
+ActiveRecord::Schema.define(version: 20131228225236) do
+
+  create_table "diploma_works", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "student"
+    t.string   "graduation_supervisor"
+    t.boolean  "agreed",                default: false
+    t.boolean  "approved",              default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
