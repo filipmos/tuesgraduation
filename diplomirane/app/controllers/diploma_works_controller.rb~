@@ -82,7 +82,7 @@ protected
 			user_t= User.find_by_id(session[:user_id]).user_type 
 	
       unless user_access == "admin" or user_t == "graduation supervisor"  		
-        redirect_to admin_url
+        redirect_to diploma_works_url
       end
     end
 

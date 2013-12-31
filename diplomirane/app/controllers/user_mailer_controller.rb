@@ -1,0 +1,3 @@
+class UserMailerController < ApplicationController
+
+end

@@ -1,3 +1,5 @@
+<% user_access= User.find_by_id(session[:user_id]).access %>
+
 <script type="text/javascript"> 
 function render() {
     if (document.getElementById('user_user_type').value == "graduation supervisor" ||
@@ -32,12 +34,7 @@ function render() {
   <fieldset>
   <legend>Enter User Details</legend>
 
-  <div>
-    <%= f.label :name, "Username" %>:
-    <%= f.text_field :name, :size => 40 %>
-  </div>
-
-	<div>
+<div>
     <%= f.label :first_name %>:
     <%= f.text_field :first_name, :size => 40 %>
   </div>
@@ -52,12 +49,22 @@ function render() {
     <%= f.text_field :last_name, :size => 40 %>
   </div>
 
+<% if user_access == "admin" %>
+  <div>
+    <%= f.label :name, "Username" %>:
+    <%= f.text_field :name, :size => 40 %>
+  </div>
+
+	<div>
+    <%= f.label :email %>:
+    <%= f.text_field :email, :size => 40 %>
+  </div>
+
 	<div>
     <%= f.label :user_type %>:
     <%= f.select(:user_type, {:"student" => 'student', :"graduation supervisor" => 'graduation supervisor',  
 				:"teacher" => 'teacher'},{}, {:onclick=>"render()"} ) %>
   </div>
-	
 	
 	<div id="gs" style="display: none">
 		<%= f.label :business %>:
@@ -72,7 +79,7 @@ function render() {
   </div>
 
   <div>
-    <%= f.label :password, 'Password' %>:
+    <%= f.label :password %>:
     <%= f.password_field :password, :size => 40 %>
   </div>
 
@@ -86,6 +93,11 @@ function render() {
 		<%= f.select(:access, ["user","admin"] )  %>
 	</div>
 
+	<div>
+		<%= f.label :active %>:
+		<%= f.select(:active, [0,1] )  %>
+	</div>
+<% end %>
   <div>
     <%= f.submit %>
   </div>

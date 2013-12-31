@@ -1,7 +1,12 @@
 Diplomirane::Application.routes.draw do
 	
+	get 'grades/parse_emails' 
+  resources :grades
+
+	get 'grade' => 'grade#index'
   get 'admin' => 'admin#index'
 	get 'users' => 'users#index'
+	get 'user_mailer' => 'user_mailer#index'
 
 
   controller :sessions do

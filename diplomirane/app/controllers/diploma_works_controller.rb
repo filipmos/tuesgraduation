@@ -1,4 +1,5 @@
 class DiplomaWorksController < ApplicationController
+	skip_before_filter :authorize
   before_action :set_diploma_work, only: [:show, :edit, :update, :destroy]
 	
 	before_filter :acsess, :except => [:index, :show]

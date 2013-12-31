@@ -1,0 +1,10 @@
+class UserMailerController < ApplicationController
+	default from: 'denislav.parvanov@gmail.com'
+
+	def welcome_email()
+    @user = @user_id = User.find_by_id(5)
+    @url  = 'http://example.com/login'
+    mail(to: 'denislav_1995@abv.bg', subject: 'Welcome to My Awesome Site')
+  end
+
+end

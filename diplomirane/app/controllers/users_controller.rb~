@@ -66,8 +66,15 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
 		params.permit!
-    @user = User.find(params[:id])
+		@user = User.find(params[:id])
+		@first_name = params[:user][:first_name].to_s
+		@second_name = params[:user][:second_name].to_s
+		@last_name = params[:user][:last_name].to_s
 
+		if @first_name != "-" and @second_name != "-" and @last_name != "-"
+				@user.update_attribute(:active,1)
+		end	
+			
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(users_url,
