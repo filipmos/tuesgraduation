@@ -1,0 +1,50 @@
+<%= stylesheet_link_tag "/css/aplication.css" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diplomirane</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+	<% current_user=User.find_by_id(session[:user_id]) %>
+</head>
+<body>
+
+<div id="header">
+	<h1><a id="logo" href="http://localhost:3000">Elsys</a></h1>
+	<% if session[:user_id] %>
+		<div class="menu-top-level-menu-container">
+			<ul id="menu-top-level-menu" class="menu">
+				<li><a href="http://localhost:3000/users/">Акаунти</a></li>
+				<li><a href="http://localhost:3000/grades/">Класове</a></li>
+				<li><a href="http://localhost:3000/diploma_works/">Дипломни работи</a></li>
+				<li><a href="#">Рецензенти</a></li>
+				<li><a href="#">Комисии</a></li>
+			</ul>
+		</div>
+		<div id="user">
+			<ul>
+				<li><a><%= link_to current_user.name, current_user %><a> </li>
+			  <li><%= button_to 'Logout', logout_path, :method => :delete %></li>
+			</ul>
+		</div>
+	<% end %>
+	<div style="clear: both; padding-top: 5px;"></div>
+</div>
+
+<div id="inscreen">
+  <%= yield %>  
+ <div style="clear: both; padding-top: 20px;"></div>
+</div>
+
+
+<div id="footer">
+	<a class="tu" title="Технически Университет - София" href="http://www.tu-sofia.bg/">Технически Университет - София</a>
+	<div id="copyright">
+		Copyright © 
+		<strong><a class="elsys" title="Технологично училище Електронни системи" href="http://www.elsys-bg.org/">Технологично училище Електронни системи</a></strong> 
+		към Технически Университет - София 2014. Всички права са запазени. </a>
+	</div>
+</div>
+</body>
+</html>

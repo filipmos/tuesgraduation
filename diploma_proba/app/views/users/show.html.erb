@@ -1,0 +1,59 @@
+<% user_access= User.find_by_id(session[:user_id]).access %>
+
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Username:</strong>
+  <%= @user.name %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @user.first_name %>
+	<%= @user.second_name %>
+	<%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @user.number %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @user.grade %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<% if user_access == "admin" %>
+<p>
+  <strong>Type:</strong>
+  <%= @user.user_type %>
+</p>
+
+<p>
+  <strong>Access:</strong>
+  <%= @user.access %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @user.active %>
+</p>
+
+<p>
+  <strong>Hashed password:</strong>
+  <%= @user.hashed_password %>
+</p>
+
+<p>
+  <strong>Salt:</strong>
+  <%= @user.salt %>
+</p>
+<% end %>
+	<% if @user.id == session[:user_id] or user_access == "admin" %>
+<%= link_to 'Edit', edit_user_path(@user) %>
+<% end %>
+<%= link_to 'Back', admin_path %>

@@ -1,0 +1,16 @@
+<% user_name= User.find_by_id(session[:user_id]).name %>
+<% user_access= User.find_by_id(session[:user_id]).access %>
+
+<%if user_access == "admin" or @diploma_work.graduation_supervisor == user_name %>
+	<h1>Editing diploma_work</h1>
+	<%= render 'form' %>	
+<% else %>
+	<p>Can't edit!</p>
+	<script type="text/javascript">
+    window.location.href="/diploma_works"  
+  </script
+<% end %>
+
+<%= link_to 'Show', @diploma_work %> |
+<%= link_to 'Back', :back %>
+

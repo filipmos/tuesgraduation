@@ -1,0 +1,59 @@
+<h1>Editing <%= @grade.grade %></h1>
+
+<%= form_for(@grade) do |f| %>
+  <% if @grade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+
+      <ul>
+      <% @grade.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<% @user_ids= @grade.user_ids %>
+	<% @user_ids= @user_ids.sub "[", "" %>
+	<% @user_ids= @user_ids.sub "]", "" %>
+	<% @user_ids= @user_ids.split(",").map {|i| Integer(i) } %>
+  
+  <% @user_ids.each do |user_id| %>
+		<% if User.find_by_id(user_id) %>
+			<% @guser= User.find_by_id(user_id) %>
+			<div>
+				<label for="email<%= user_id%>"> №<%=@guser.number%> email: </label>
+				<input id="email<%=user_id%>" type="text" name="email<%=user_id%>" value="<%= @guser.email%>"></input>
+  		</div>
+		<% else %>
+			<% @user_ids.delete(user_id) %>
+			<% @grade.update_attribute(:user_ids, "#{@user_ids}") %>
+			<% @gnumber = @grade.number %>
+			<% @grade.update_attribute(:number, "#{@gnumber}")%>
+		<% end %>
+	<% end %>
+
+	<br />
+  <div class="field">
+    <%= f.label :number %><br>
+    <%= f.number_field :number %>
+  </div>
+	<div class="field">
+    <%= f.label :grade %><br>
+    <%= f.text_field :grade,:readonly => true %>
+  </div>
+	<div>
+		<label for="send_mails">Send Mails</label>:
+		<select id="send_mails" name="send_mails">
+			<option selected="selected" value="false">no</option>
+			<option value="true">yes</option>
+		</select>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Show', @grade %> |
+<%= link_to 'Back', grades_path %>

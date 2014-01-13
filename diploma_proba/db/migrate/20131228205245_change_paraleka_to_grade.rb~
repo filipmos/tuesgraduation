@@ -1,0 +1,4 @@
+class ChangeParalekaToGrade < ActiveRecord::Migration
+  def change
+  end
+end

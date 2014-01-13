@@ -1,0 +1,5 @@
+class DipomasController < ApplicationController
+  def index
+
+  end
+end

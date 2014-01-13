@@ -1,0 +1,46 @@
+<h1>Listing diploma_works</h1>
+
+<% user_access= User.find_by_id(session[:user_id]).access %>
+<% user_t= User.find_by_id(session[:user_id]).user_type %>
+<% user_name= User.find_by_id(session[:user_id]).name %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Student</th>
+      <th>Graduation supervisor</th>
+      <th>Agreed</th>
+      <th>Approved</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @diploma_works.each do |diploma_work| %>
+      <tr>
+        <td><%= diploma_work.title %></td>
+        <td><%= diploma_work.description %></td>
+        <td><%= diploma_work.student %></td>
+        <td><%= diploma_work.graduation_supervisor %></td>
+        <td><%= diploma_work.agreed %></td>
+        <td><%= diploma_work.approved %></td>
+        <td><%= link_to 'Show', diploma_work %></td>
+				<% if user_access == "admin" or user_name == diploma_work.graduation_supervisor%>
+        		<td><%= link_to 'Edit', edit_diploma_work_path(diploma_work) %></td>
+        		<td><%= link_to 'Destroy', diploma_work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<% end %>
+				
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_access == "admin" or user_t == "graduation supervisor" %>
+	<%= link_to 'New Diploma work', new_diploma_work_path %>
+<% end %>
+<%= link_to 'Back', :back %>

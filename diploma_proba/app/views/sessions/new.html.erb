@@ -1,0 +1,26 @@
+<div class="diplomirane_form">
+  <% if flash[:alert] %>
+    <p id="notice"><%= flash[:alert] %></p>
+  <% end %>
+
+  <%= form_tag do %>
+    <fieldset class="log_in_field">
+      <legend>Моля влезте в системата</legend>
+
+      <div>
+        <label for="name">Име:</label>
+        <%= text_field_tag :name, params[:name] %>
+      </div>
+
+      <div>
+        <label for="password">Парола:</label>
+        <%= password_field_tag :password, params[:password] %>
+      </div>
+  
+      <div>
+        <%= submit_tag "Вход" %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
+

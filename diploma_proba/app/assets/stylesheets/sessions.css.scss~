@@ -1,0 +1,10 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	margin: 0px;
+	color: #333;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	background: url('/assets/rotate.jpg') center 55px no-repeat;
+	}
