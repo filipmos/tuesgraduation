@@ -1,9 +1,12 @@
-<%= stylesheet_link_tag "/css/aplication.css" %>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Diplomirane</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<% if session[:user_id].nil? %>
+		<%= stylesheet_link_tag "/assets/login.css" %>
+	<% end %>	
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 	<% current_user=User.find_by_id(session[:user_id]) %>
@@ -11,8 +14,8 @@
 <body>
 
 <div id="header">
-	<h1><a id="logo" href="http://localhost:3000">Elsys</a></h1>
 	<% if session[:user_id] %>
+		<h1><a id="logo" href="http://localhost:3000">Elsys</a></h1>
 		<div class="menu-top-level-menu-container">
 			<ul id="menu-top-level-menu" class="menu">
 				<li><a href="http://localhost:3000/users/">Акаунти</a></li>

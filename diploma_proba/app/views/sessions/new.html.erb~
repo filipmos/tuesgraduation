@@ -1,3 +1,7 @@
+<head>
+ *= require_self
+</head>
+
 <div class="diplomirane_form">
   <% if flash[:alert] %>
     <p id="notice"><%= flash[:alert] %></p>
@@ -18,7 +22,7 @@
       </div>
   
       <div>
-        <%= submit_tag "Login" %>
+        <%= submit_tag "Вход" %>
       </div>
     </fieldset>
   <% end %>

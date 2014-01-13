@@ -7,4 +7,4 @@ body {
 	color: #333;
 	font-family: 'Helvetica Neue', Arial, sans-serif;
 	background: url('/assets/rotate.jpg') center 55px no-repeat;
-	}
+}

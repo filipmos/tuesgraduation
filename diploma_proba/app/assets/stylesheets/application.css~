@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require_tree "." exclude: "login"
  */
 
 body {
@@ -36,7 +36,7 @@ body {
 #header ul {list-style: none; float: left; margin: 0px; padding: 0px; display: inline-block; height: 55px; margin-left: 1}
 #header ul li {display: inline;margin: 0px; padding: 0px;}
 #header ul li a {display: inline-block; padding: 10px; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #666; text-decoration: none; background: #fff; margin-top: 10px; letter-spacing: 1px; line-height: 12px;}
-#header ul li form {display: inline-block; padding: 10px; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #666; text-decoration: none; background: #fff; margin-top: 10px; letter-spacing: 1px; line-height: 12px;}
+#header ul li form {display: inline-block; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #666; text-decoration: none; background: #fff; margin-top: 10px; letter-spacing: 1px; line-height: 12px;}
 #header #user {float:right}
 #header ul li a:hover {color: #fff; background: #3d94e0;}
 
