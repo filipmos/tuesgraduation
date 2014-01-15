@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @diploma_work.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @diploma_work.description %>
+</p>
+
+<p>
+  <strong>Diploma supervisor:</strong>
+  <%= @diploma_work.diploma_supervisor_id %>
+</p>
+
+<p>
+  <strong>Reviewer:</strong>
+  <%= Teacher.find_by_id(@diploma_work.reviewer_id).name %>
+</p>
+
+<p>
+  <strong>Covenanted:</strong>
+  <%= @diploma_work.covenanted %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @diploma_work.approved %>
+</p>
+
+<%= link_to 'Edit', edit_diploma_work_path(@diploma_work) %> |
+<%= link_to 'Back', diploma_works_path %>

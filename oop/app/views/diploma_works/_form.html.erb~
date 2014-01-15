@@ -1,0 +1,55 @@
+<%= form_for(@diploma_work) do |f| %>
+  <% if @diploma_work.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@diploma_work.errors.count, "error") %> prohibited this diploma_work from being saved:</h2>
+
+      <ul>
+      <% @diploma_work.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<script type="text/javascript"> 
+	$("select").multiselect({
+   selectedText: "# of # selected"
+});
+</script>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description 	 %>
+  </div>
+  <div class="field">
+    <%= f.label :diploma_supervisor_id %><br>
+    <%= f.select(:diploma_supervisor_id, Teacher.all.collect {|p| [ p.name, p.predecessor.id ]}, {include_blank: 'None(Chose)'}) %>
+  </div>
+  <div class="field">
+    <%= f.label :reviewer_id %><br>
+    <%= f.select(:reviewer_id, Teacher.all.collect {|p| [ p.name, p.predecessor.id ]}, {include_blank: 'None(Chose)'}, :multiple => true, :size => 5) %>
+  </div>
+
+		<% @diplomanti= @diploma_work.diplomanti %>
+		<% @diplomanti.each do |d| %>
+			<div>
+				<label for="diplomant<%= d.predecessor.id %>"> Diplomant: </label>
+				<input id="diplomant<%= d.predecessor.id %>" type="text" name="diplomant<%= d.predecessor.id %>" value="<%= d.predecessor.id%>"></input>
+  		</div>		
+		<% end %>
+
+  <div class="field">
+    <%= f.label :covenanted %><br>
+    <%= f.check_box :covenanted %>
+  </div>
+  <div class="field">
+    <%= f.label :approved %><br>
+    <%= f.check_box :approved %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Add new student', diploma_works_path, remote: true %>
