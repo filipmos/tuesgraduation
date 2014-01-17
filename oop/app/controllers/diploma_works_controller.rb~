@@ -40,25 +40,24 @@ class DiplomaWorksController < ApplicationController
   # PATCH/PUT /diploma_works/1
   # PATCH/PUT /diploma_works/1.json
   def update
-		params
-
-	#	@diplomants= @diploma_work.diplomanti		
 		
-	#	@diplomants.each do |d|
-	#		d.update_attribute(:diploma_work_id, nil)
-	#	end
+		@diplomants_number = params[:diplomants_number].to_i
+		@new_diplomants_ids = Array.new
+		for d in 1..@diplomants_number
+		if params[:diplomants][:"p_dipl_#{d}"] == nil
+			@diplomant_id = params[:diplomants][:"p_dipl_#{d}"].to_i
+			if @diplomant_id>0
+					 
+					@new_diplomants_ids << @diplomant_id	
+			end
+		end
+		end
 		
-	#	@diplomants.each do |d|	
-	#		@diplomant_id = params[:"diplomant#{d.predecessor.id}"]
-				
-	#		d.update_attribute(:diploma_work_id, "#{@diplomant_id}")
-	#	end
-
+		@diploma_work.set_diplomants(@new_diplomants_ids)
 
 
     respond_to do |format|
       if @diploma_work.update(diploma_work_params)
-					@diploma_work.update_attribute(:description, "#{params[:description[0]}")
         format.html { redirect_to @diploma_work, notice: 'Diploma work was successfully updated.' }
         format.json { head :no_content }
       else
