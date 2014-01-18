@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <strong>Username:</strong>
+  <strong>Name:</strong>
   <%= @student.name %>
+</p>
+<p>
+  <strong>Username:</strong>
+  <%= @student.user_name %>
 </p>
 <p>
   <strong>Type:</strong>
@@ -14,6 +18,10 @@
 <p>
   <strong>Grade:</strong>
   <%= @student.grade %>
+</p>
+<p>
+  <strong>Access:</strong>
+  <%= @student.access %>
 </p>
 <p>
   <strong>Hashed password:</strong>

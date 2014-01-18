@@ -12,7 +12,7 @@
   <% end %>
 
 <script type="text/javascript" src= "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
+<%= javascript_include_tag "diploma_work" %>
 <script>
 $(function() {
         var scntDiv = $('#p_scents');
@@ -44,38 +44,42 @@ $(function() {
 
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description 	 %>
+    <%= f.text_area :description %>
   </div>
   <div class="field">
     <%= f.label :diploma_supervisor_id %><br>
-    <%= f.select(:diploma_supervisor_id, Teacher.all.collect {|p| [ p.name, p.predecessor.id ]}, {include_blank: 'None(Chose)'}) %>
+    <%= f.select(:diploma_supervisor_id, Teacher.where(:diploma_supervisor => true).collect {|p| [ p.name, p.id ]}, {include_blank: 'None(Chose)'}) %>
   </div>
   <div class="field">
     <%= f.label :reviewer_id %><br>
-    <%= f.select(:reviewer_id, Teacher.all.collect {|p| [ p.name, p.predecessor.id ]}, {include_blank: 'None(Chose)'}) %>
+    <%= f.select(:reviewer_id, Teacher.where(:reviewer => true).collect {|p| [ p.name, p.id ]}, {include_blank: 'None(Chose)'}) %>
   </div>
-	<h2><a href="#" id="addScnt">Add Diplomant</a></h2>
 
 	<div id="p_scents">
-
+		<%= label_tag :diplomants %>
+		<a href="#" id="addScnt">Add Diplomant</a>
 		<% br=0 %>
 		<% @diplomanti= @diploma_work.diplomanti %>
 		<% @diplomanti.each do |d| %>
-
 			<% br+=1 %>
-			
-			<p><label for="p_scnts"><%= select("diplomants", "p_dipl_#{br}", Student.all.collect {|p| [ p.name, p.id ]},{include_blank: 'None', :selected => d.id}) %></label> <a href="#" id="remScnt">Remove</a></p>
-
-		
+			<p><label for="p_scnts"><%= select("diplomants", "p_dipl_#{br}", Student.all.collect {|p| [ p.name, p.id ]},{include_blank: 'None', :selected => d.id}) %></label>
+			<a href="#" id="remScnt">Remove</a></p>	
 		<% end %>
-
 		<%= hidden_field_tag :diplomants_number, br %>
 	</div>
+	
+	<div class="field">
+    <%= label_tag :commissioners %><br>
+		<% br_c=0 %>
+    <% (1..5).each do |c| %>
+			<% br_c+=1 %>
+			<p><%= select("commissioners", "#{br_c}", Teacher.where(:commissioner => true).collect {|p| [ p.name, p.id ]},{include_blank: 'None'}) %><p>
+		<% end %>		
 
   <div class="field">
     <%= f.label :covenanted %><br>

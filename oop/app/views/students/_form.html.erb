@@ -11,8 +11,16 @@
     </div>
   <% end %>
 	<div class="field">
-    <%= f.label :name, "Username" %><br>
-    <%= f.text_area :name %>
+    <%= f.label :file %><br>
+    <%= f.file_field :file %>
+  </div>
+		<div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+	<div class="field">
+    <%= f.label :user_name %><br>
+    <%= f.text_field :user_name %>
   </div>
   <div class="field">
     <%= f.label :password, "New password" %>
@@ -32,6 +40,10 @@
 	<div class="field">
     <%= f.label :diploma_work_id %><br>
     <%= f.select(:diploma_work_id, DiplomaWork.all.collect {|p| [ p.title, p.id ]}, {include_blank: 'None(Chose)'}) %>
+	</div>
+	<div class="field">
+    <%= f.label :access %><br>
+    <%= f.select(:access, ["user","admin"]) %>
 	</div>
 
   <div class="actions">

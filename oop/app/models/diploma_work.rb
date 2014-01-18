@@ -12,20 +12,17 @@ class DiplomaWork < ActiveRecord::Base
        self.diploma_supervisor_id != self.reviewer_id
 	end
 
-	def diplomanti_names
-		@diplomanti= Array.new
-		@diplomants= Student.find_by_sql("SELECT * from students WHERE diploma_work_id = '#{self.id}'")
-			@diplomants.each do |d|
-				@diplomanti << d.name
-			end
-			@diplomanti
-	end
-
 	def diplomanti
 		@diplomants= Student.find_by_sql("SELECT * from students WHERE diploma_work_id = '#{self.id}'")
 			@diplomants
 	end
-
+	def diplomanti_names
+		@diplomanti= Array.new
+			self.diplomanti.each do |d|
+				@diplomanti << d.name
+			end
+			@diplomanti
+	end
 	def set_diplomants(new_diplomants_ids)
 		@new_diplomants_ids = new_diplomants_ids
 		remove_old_diplomants
@@ -34,11 +31,15 @@ class DiplomaWork < ActiveRecord::Base
 			@diplomant.update_attribute(:diploma_work_id, self.id) 
 		end
 	end
-
 	def remove_old_diplomants
 		@old_diplomants = self.diplomanti
 		@old_diplomants.each do |d|
 			d.update_attribute(:diploma_work_id, nil)
 		end
 	end
+	
+	def commissioners
+		
+	end
+
 end

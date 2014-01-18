@@ -1,5 +1,6 @@
 class DiplomaWorksController < ApplicationController
   before_action :set_diploma_work, only: [:show, :edit, :update, :destroy]
+	before_filter :access, :except => [:index, :show]
 
   # GET /diploma_works
   # GET /diploma_works.json
@@ -81,6 +82,13 @@ class DiplomaWorksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_diploma_work
       @diploma_work = DiplomaWork.find(params[:id])
+    end
+
+		def access
+			@usr = User.find_by_id(session[:user_id])
+      unless @usr.admin? or @diploma_work.diploma_supervisor_id == @usr.id  		
+        redirect_to diploma_works_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

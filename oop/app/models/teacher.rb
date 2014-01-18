@@ -2,21 +2,11 @@ require 'digest/sha2'
 class Teacher < ActiveRecord::Base
 	child_of :user
 
-  validates_presence_of :business
-
 	validates :password, :confirmation => true
   attr_accessor :password_confirmation
   attr_reader   :password
 
 	validate  :password_must_be_present
-  
-  def Teacher.authenticate(name, password)
-    if teacher = find_by_name(name)
-      if teacher.hashed_password == encrypt_password(password, teacher.salt)
-        teacher
-      end
-    end
-  end
 
   def Teacher.encrypt_password(password, salt)
     Digest::SHA2.hexdigest(password + "interesno" + salt)
@@ -31,6 +21,7 @@ class Teacher < ActiveRecord::Base
       self.hashed_password = self.class.encrypt_password(password, salt)
     end
   end
+
   
   private
 
@@ -41,4 +32,5 @@ class Teacher < ActiveRecord::Base
     def generate_salt
       self.salt = self.object_id.to_s + rand.to_s
     end
+
 end

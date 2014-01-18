@@ -3,7 +3,7 @@ class Student < ActiveRecord::Base
 	child_of :user
   	
   validates_presence_of :number
-	validates_inclusion_of :grade, :in => ["12a","12b","12v","12g"]
+	validates_inclusion_of :grade, :in => ["12a","12b","12v","12g"] 
 	validates :diploma_work_id,	:numericality => true, :unless => lambda { self.diploma_work_id.nil? }
 
 	validates :password, :confirmation => true
@@ -11,14 +11,6 @@ class Student < ActiveRecord::Base
   attr_reader   :password
 
 	validate  :password_must_be_present
-  
-  def Student.authenticate(name, password)
-    if student = find_by_name(name)
-      if student.hashed_password == encrypt_password(password, student.salt)
-        student
-      end
-    end
-  end
 
   def Student.encrypt_password(password, salt)
     Digest::SHA2.hexdigest(password + "interesno" + salt)

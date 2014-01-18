@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113235314) do
+ActiveRecord::Schema.define(version: 20140118110635) do
+
+  create_table "diploma_work_commissioner_junctions", force: true do |t|
+    t.integer "diploma_work_id"
+    t.integer "commissioner_id"
+  end
 
   create_table "diploma_works", force: true do |t|
     t.string   "title"
@@ -31,7 +36,10 @@ ActiveRecord::Schema.define(version: 20140113235314) do
   end
 
   create_table "teachers", force: true do |t|
-    t.string "business"
+    t.string  "business"
+    t.boolean "diploma_supervisor", default: false
+    t.boolean "reviewer",           default: false
+    t.boolean "commissioner",       default: false
   end
 
   create_table "users", force: true do |t|
@@ -40,6 +48,9 @@ ActiveRecord::Schema.define(version: 20140113235314) do
     t.string  "salt"
     t.integer "heir_id"
     t.string  "heir_type"
+    t.string  "user_name"
+    t.string  "email"
+    t.string  "access",          default: "user"
   end
 
 end

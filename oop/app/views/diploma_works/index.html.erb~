@@ -22,9 +22,15 @@
       <tr>
         <td><%= diploma_work.title %></td>
         <td><%= diploma_work.description %></td>
-				<td><%= diploma_work.diplomanti[0].name%></td>
-        <td><%= Teacher.find_by_id(diploma_work.diploma_supervisor_id).name %></td>
-        <td><%= Teacher.find_by_id(diploma_work.reviewer_id).name %></td>
+				<td><%= diploma_work.diplomanti_names%></td>
+        <td><% if Teacher.find_by_id(diploma_work.diploma_supervisor_id) %>
+							<%= Teacher.find_by_id(diploma_work.diploma_supervisor_id).name  %>
+						<% end %>
+				</td>
+        <td><% if Teacher.find_by_id(diploma_work.reviewer_id) %>
+							<%= Teacher.find_by_id(diploma_work.reviewer_id).name  %>
+						<% end %>
+				</td>
         <td><%= diploma_work.covenanted %></td>
         <td><%= diploma_work.approved %></td>
         <td><%= link_to 'Show', diploma_work %></td>

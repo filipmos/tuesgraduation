@@ -1,4 +1,14 @@
 Oop::Application.routes.draw do
+
+	get 'admin' => 'admin#index'
+
+  controller :sessions do
+    get  'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+
   resources :diploma_works
 
   resources :teachers
@@ -7,11 +17,15 @@ Oop::Application.routes.draw do
 
   resources :users
 
+	get 'students/parse_emails'
+	get 'user_mailer' => 'user_mailer#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # root 'welcome#
+	root :to => 'admin#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

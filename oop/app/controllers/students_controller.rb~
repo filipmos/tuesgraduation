@@ -1,5 +1,8 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+	before_filter :access, :except => [:index, :show]
+
+	require 'csv'
 
   # GET /students
   # GET /students.json
@@ -24,12 +27,31 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    @student = Student.new(student_params)
+		file_data = params[:student][:file]
+		if !file_data.nil?
+			CSV.foreach(file_data.path) do |row|
+				@grade = row[0]
+				@number = row[1]
+				@name = row[2]
+				@email = row[4]
+				@student_params = { "user_name" => "#{@email}", "name" => "#{@name}", "email" => "#{@email}", "number" => "#{@number}", "grade" => "#{@grade}", "password" => "1234"}   
+		  	@student = Student.new(@student_params)
+				@student.save
+				@predecessor_id = @student.predecessor.id
+				@student_id = @student.id
+				Student.update_all("id = '#{@predecessor_id}'", "id = '#{@student_id}'")
+				User.update_all("heir_id = '#{@predecessor_id}'", "heir_id = '#{@student_id}'")
+				#UserMailer.welcome_email(@student,"1234").deliver
+			end	
+		else
+			@student = Student.new(student_params)
+			UserMailer.welcome_email(@student,"1234").deliver
+		end
+
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @student }
+        format.html { redirect_to students_url, notice: 'Student was successfully created.' }
       else
         format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -67,8 +89,20 @@ class StudentsController < ApplicationController
       @student = Student.find(params[:id])
     end
 
+		def access
+			@usr = User.find_by_id(session[:user_id])
+			unless @usr.admin? or @student.id == session[:user_id]
+        redirect_to students_url
+      end
+		end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:name, :password, :grade, :number)
+			@usr = User.find_by_id(session[:user_id])
+			if @usr.admin?
+      	params.require(:student).permit(:user_name, :name, :password, :grade, :number, :diploma_work_id, :access)
+			else 
+				params.require(:student).permit(:user_name, :name, :password, :grade, :number, :diploma_work_id)
+			end
     end
 end

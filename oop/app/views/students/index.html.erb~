@@ -3,7 +3,9 @@
 <table>
   <thead>
     <tr>
+			<th>Name</th>
 			<th>Username</th>
+			<th>ID</th>
 			<th>Number</th>
       <th>Grade</th>
       <th></th>
@@ -16,6 +18,7 @@
     <% @students.each do |student| %>
       <tr>
 				<td><%= student.name %></td>
+				<td><%= student.id %></td>
 				<td><%= student.number %></td>
         <td><%= student.grade %></td>
         <td><%= link_to 'Show', student %></td>

@@ -12,12 +12,16 @@
 
 <p>
   <strong>Diploma supervisor:</strong>
-  <%= @diploma_work.diploma_supervisor_id %>
+  <% if t = Teacher.find_by_id(@diploma_work.diploma_supervisor_id) %>
+		<%= t.name  %>
+	<% end %>
 </p>
 
 <p>
   <strong>Reviewer:</strong>
-  <%= Teacher.find_by_id(@diploma_work.reviewer_id).name %>
+  <% if t = Teacher.find_by_id(diploma_work.reviewer_id) %>
+		<%= t.name  %>
+	<% end %>
 </p>
 
 <p>

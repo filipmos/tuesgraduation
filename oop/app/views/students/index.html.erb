@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+			<th>Name</th>
 			<th>Username</th>
 			<th>ID</th>
 			<th>Number</th>
@@ -17,6 +18,7 @@
     <% @students.each do |student| %>
       <tr>
 				<td><%= student.name %></td>
+				<td><%= student.user_name %></td>
 				<td><%= student.id %></td>
 				<td><%= student.number %></td>
         <td><%= student.grade %></td>
